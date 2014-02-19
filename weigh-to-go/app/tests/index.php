@@ -9,7 +9,7 @@
         $counter = 0;
         while ($row = $emails->fetch()) {
             $encoded = $app->encode($row[0]);
-            if ($row[0] != $app->decode($encoded)) {
+            if ($row[0] != $app->decode($encoded, true)) {
                 echo "Problem decoding {$row[0]}.<br>";
             }
             $counter++;
