@@ -1,0 +1,84 @@
+@import url(http://fonts.googleapis.com/css?family=Nunito:700);
+html, body {
+    font: 16px Helvetica, Arial, sans-serif;
+}
+body {
+    background: url("../images/little_pluses.png");
+}
+.header {
+    padding:50px 0 0 0;
+    height: 110px;
+    background: center center url("../images/header.png") no-repeat;
+    color: white;
+    margin: 5px 0;
+}
+.header ul.nav.nav-pills {
+    margin:0 10px 0 0;
+    width: 80%;
+}
+.header ul.nav.nav-pills li{
+    float: right;
+}
+.header ul.nav.nav-pills li a {
+    color: white;
+}
+.header ul.nav.nav-pills li a:hover {
+    color: darkblue;
+}
+.main {
+    margin-top: 5px;
+    background: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+.header .user-menu {
+    margin: 0 10px 0 0;
+    width: 35%;
+    float: right;
+}
+@media (max-width: 970px) {
+    .header-mobile h1 a {
+        font-family: 'Nunito', sans-serif;
+    }
+}
+.header-mobile {
+    background: #0F75BC;
+    color: white;
+    text-align: center;
+}
+.header-mobile h1 a {
+    color: white;
+    text-decoration: none;
+}
+.header-mobile h1 a:hover {
+    color: white;
+    text-decoration: none;
+    text-shadow: 3px 3px darkblue;
+}
+.header-mobile .tnj-buttons {
+    margin-bottom: 5px;
+}
+.header-mobile .tnj-buttons:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.sponsor {
+    text-align: center;
+}
+.sponsor img {
+    width: 50%;
+    max-height: 250px;
+    height: auto;
+    /*border: thin solid darkblue;*/
+}
+.sponsor.sponsor-premiere img {
+    width: 100%;
+}
+.sponsor.sponsor-gold img {
+    width: 75%;
+}

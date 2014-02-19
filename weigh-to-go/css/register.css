@@ -1,0 +1,11 @@
+
+div.form-group.has-error span.help-block::before {
+    content: "^ ";
+}
+.registration-body {
+    background: white;
+    height: 100%;
+}
+form {
+    text-align: justify;
+}

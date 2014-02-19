@@ -1,0 +1,18 @@
+.user-info {
+    background: #EEEBEB;
+    padding: 4px;
+    margin-top: 5px;
+}
+.tracker {
+    padding: 4px;
+    margin-top: 5px;
+    border: thin dotted #0F75BC;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+.trackContainer {
+    width: 30%;
+    float: left;
+
+}
