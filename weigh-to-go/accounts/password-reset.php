@@ -5,9 +5,9 @@
     } elseif (isset($_SESSION['emailpass'])) {
         $temp_user = $app->getUserByEmail($_SESSION['emailpass']);
     } elseif ($_GET['q']) {
-        $linkid = base64_decode($_GET['q']);
-        $stuff = explode("|weigh|to|go|", $linkid);
-        $email = $stuff[1];
+        // $linkid = base64_decode($_GET['q']);
+        // $stuff = explode("|weigh|to|go|", $linkid);
+        $email = $app->decode($_GET['q']);
         if ( $temp_user = $app->getUserByEmail($email) ) {
             $_SESSION['emailpass'] = $email;
         }

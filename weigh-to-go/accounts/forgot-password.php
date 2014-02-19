@@ -7,8 +7,8 @@
         $temp_user = $app->getUserByEmail($_POST['email']);
         if ( $temp_user ) {
             $email = $_POST['email'];
-            $linkid = base64_encode($user->id)."|weigh|to|go|" . $email;
-            $activate_link = $app->router->absurl('password-reset') . "?q=" . urlencode(base64_encode($linkid));
+            // $linkid = base64_encode($user->id)."|weigh|to|go|" . $email;
+            $activate_link = $app->router->absurl('password-reset') . "?q=" . $app->encode($email);
 
             $message = "Password Reset\n\nPlease click the link below to reset your password.\n\n".$activate_link."\n\nIf clicking the link does not work, you might have to copy and paste it into your browser.\n\nIf you no longer want to reset your password, disregard this email.";
 

@@ -26,8 +26,9 @@
          * @var array
          */
         protected $admins = array(
-            // List of E-mail addresses
+            // Array of admin email addresses.
         );
+        protected $secret_key = '';
         protected $dbhost = '';
         protected $dbuser = '';
         protected $dbpass = '';
@@ -168,12 +169,38 @@
             }
         }
         /**
+         * Encodes a string using the App's secret key.
+         * @param  string  $str        The variable to encode.
+         * @param  boolean $url_encode Whether to urlencode the response
+         * @return string              The encoded variable.
+         */
+        public function encode($str, $url_encode=True) {
+            $encoded_var = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($this->secret_key), $str, MCRYPT_MODE_CBC, md5(md5($this->secret_key))));
+            if ($url_encode) {
+                return urlencode($encoded_var);
+            } else {
+                return $encoded_var;
+            }
+        }
+        /**
+         * Decodes a string encoded with $this->encode().
+         * @param  string  $str        The encoded string.
+         * @param  boolean $url_decode Whether to urldecode the inputed string.
+         * @return string              The decoded value.
+         */
+        public function decode($str, $url_decode=False) {
+            if ($url_decode) {
+                $str = urldecode($str);
+            }
+            return rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($this->secret_key), base64_decode($str), MCRYPT_MODE_CBC, md5(md5($this->secret_key))), "\0");
+        }
+        /**
          * Encodes the users e-mail address and send the activation e-mail.
          * @param  string $email E-mail address of user
          * @return None
          */
         public static function sendActivationEmail($email) {
-            $activate_link = self::BASE_URL . "/accounts/activate.php?q=" . urlencode(base64_encode($email));
+            $activate_link = self::BASE_URL . "/accounts/activate.php?q=" . $this->encode($email);
             $message = "Thanks for registering. You are almost done.\n\nPlease click the link below to confirm your e-mail address and activate your account.\n\n".$activate_link."\n\nIf clicking the link does not work, you might have to copy and paste it into your browser.";
             mail($email, "Weigh-to-Go: confirm e-mail", $message, "From: Weigh-to-Go <weightogo-noreply@delawareonline.com>\r\nMIME-Version: 1.0\r\nContent-Type: text/plain; charset=utf-8");
         }

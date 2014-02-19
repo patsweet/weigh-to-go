@@ -2,14 +2,20 @@
 
     include_once('../app.php');
 
-    $user = getUserByEmail("psweet@delawareonline.com");
-    if (!$user) {
-        $user = new User();
+    function testEmailEncode() {
+        global $app;
+        $conn = $app->conn;
+        $emails = $conn->query("SELECT email FROM users");
+        $counter = 0;
+        while ($row = $emails->fetch()) {
+            $encoded = $app->encode($row[0]);
+            if ($row[0] != $app->decode($encoded)) {
+                echo "Problem decoding {$row[0]}.<br>";
+            }
+            $counter++;
+        }
+        echo "Successfully encoded/decoded $counter emails.";
     }
-    // echo json_encode($user->checkPassword("Hello World"));
+    testEmailEncode();
 
-    $group = getGroupById(1);
-
-    // echo json_encode($group->numUsers(false));
-    echo json_encode(getTrackingByUser($user));
 ?>
